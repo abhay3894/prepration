@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *left;
+    Node *right;
+    Node(int d)
+    {
+        data = d;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+Node *insert(Node *root, int data)
+{
+    if (root == NULL)
+    {
+        root = new Node(data);
+    }
+    else if (data <= root->data)
+    {
+        root->left = insert(root->left, data);
+    }
+    else if (data > root->data)
+    {
+        root->right = insert(root->right, data);
+    }
+    return root;
+}
+
+void inTraverse(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inTraverse(root->left);
+    cout << root->data << " ";
+    inTraverse(root->right);
+}
+
+int main()
+{
+    Node *root = NULL;
+    root = insert(root, 10);
+    root = insert(root, 20);
+    root = insert(root, 5);
+    root = insert(root, 6);
+    inTraverse(root);
+    return 0;
+}
