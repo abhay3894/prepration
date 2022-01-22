@@ -42,6 +42,23 @@ void inTraverse(Node *root)
     cout << root->data << " ";
     inTraverse(root->right);
 }
+int height(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = height(root->left);
+    int right = height(root->right);
+    if (left >= right)
+    {
+        return left + 1;
+    }
+    else if (right > left)
+    {
+        return right + 1;
+    }
+}
 
 int main()
 {
@@ -51,5 +68,6 @@ int main()
     root = insert(root, 5);
     root = insert(root, 6);
     inTraverse(root);
+    cout << "\nHeight : " << height(root);
     return 0;
 }
