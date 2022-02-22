@@ -31,7 +31,35 @@ Node *insert(Node *head, int data)
     current->next = newNode;
     return head;
 }
-void traverse(Node *head)
+Node *reverse(Node *head)
+{
+    Node *current = head;
+    Node *prev = NULL;
+    Node *next = NULL;
+    while (current != NULL)
+    {
+        Node *next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    return prev;
+}
+Node *reverserec(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    Node *current = reverserec(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return current;
+}
+
+Node *mergelist()
+
+    void traverse(Node *head)
 {
     Node *current = head;
     while (current != NULL)
@@ -48,6 +76,8 @@ int main()
     head = insert(head, 10);
     head = insert(head, 20);
     head = insert(head, 30);
+    traverse(head);
+    head = reverserec(head);
     traverse(head);
     return 0;
 }
