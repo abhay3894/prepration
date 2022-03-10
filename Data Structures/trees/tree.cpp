@@ -36,6 +36,17 @@ treeNode *insert(treeNode *root, int data)
     return root;
 }
 
+int height(treeNode *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = height(root->left) + 1;
+    int right = height(root->right) + 1;
+    return max(left, right);
+}
+
 void inorder(treeNode *root)
 {
     if (root == NULL)
@@ -43,8 +54,31 @@ void inorder(treeNode *root)
         return;
     }
     inorder(root->left);
-    cout << root->data << endl;
+    cout << root->data << " ";
     inorder(root->right);
+}
+
+bool search(treeNode *root, int key)
+{
+    if (root == NULL)
+    {
+        return false;
+    }
+
+    else if (key == root->data)
+    {
+        return true;
+    }
+    else if (key <= root->data)
+    {
+        return search(root->left, key);
+    }
+    else if (key > root->data)
+    {
+        return search(root->right, key);
+    }
+
+    return false;
 }
 
 int main()
@@ -52,7 +86,17 @@ int main()
     treeNode *root = NULL;
     root = insert(root, 10);
     root = insert(root, 20);
+    root = insert(root, 30);
+    root = insert(root, 40);
     root = insert(root, 5);
+    root = insert(root, 4);
     inorder(root);
+    cout << "\n";
+    cout << height(root);
+    cout << "\n";
+    if (search(root, 500))
+        cout << "Found";
+    else
+        cout << "Not Found";
     return 0;
 }

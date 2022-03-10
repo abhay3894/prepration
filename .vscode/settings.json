@@ -12,6 +12,14 @@
     "fstream": "cpp",
     "type_traits": "cpp",
     "ostream": "cpp",
-    "limits": "cpp"
+    "limits": "cpp",
+    "*.tcc": "cpp",
+    "list": "cpp",
+    "string": "cpp",
+    "sstream": "cpp",
+    "algorithm": "cpp",
+    "deque": "cpp",
+    "unordered_map": "cpp",
+    "unordered_set": "cpp"
   }
 }

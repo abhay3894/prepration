@@ -31,6 +31,36 @@ Node *insert(Node *head, int data)
     current->next = newNode;
     return head;
 }
+
+Node *deleteNode(Node *head, int data)
+{
+    Node *prev, *current, *next;
+    prev = NULL;
+    current = head;
+    next = current->next;
+    if (head->data == data)
+    {
+        head = next;
+        current->next = NULL;
+        return head;
+    }
+    while (current->data != data && current->next != NULL)
+    {
+        prev = current;
+        current = current->next;
+        next = current->next;
+    }
+    if (current == NULL)
+    {
+        return head;
+    }
+    else
+    {
+        prev->next = next;
+        current->next = NULL;
+    }
+    return head;
+}
 Node *reverse(Node *head)
 {
     Node *current = head;
@@ -45,6 +75,20 @@ Node *reverse(Node *head)
     }
     return prev;
 }
+
+Node *push(Node *head, int data)
+{
+    Node *newNode = new Node(data);
+    if (head == NULL)
+    {
+        head = newNode;
+        return head;
+    }
+    newNode->next = head;
+    head = newNode;
+    return head;
+}
+
 Node *reverserec(Node *head)
 {
     if (head == NULL || head->next == NULL)
@@ -57,27 +101,45 @@ Node *reverserec(Node *head)
     return current;
 }
 
-Node *mergelist()
+void test(Node *head)
+{
+    Node *current = head;
+    map<Node *, int> m;
+    while (current != NULL)
+    {
+        m[current]++;
+        current = current->next;
+    }
+    cout << m[head];
+}
 
-    void traverse(Node *head)
+void traverse(Node *head)
 {
     Node *current = head;
     while (current != NULL)
     {
-        cout << current->data << "->";
+        cout << current->data << " ";
         current = current->next;
     }
-    cout << "NULL" << endl;
+    cout << "\n";
 }
 
 int main()
 {
     Node *head = NULL;
     head = insert(head, 10);
-    head = insert(head, 20);
-    head = insert(head, 30);
+    insert(head, 20);
+    insert(head, 30);
+    insert(head, 40);
+    head = push(head, 5);
     traverse(head);
-    head = reverserec(head);
+    // head = reverserec(head);
+    // traverse(head);
+    // test(head);
+    // head = deleteNode(head, 30);
+    // traverse(head);
+    head = reverse(head);
     traverse(head);
+
     return 0;
 }
