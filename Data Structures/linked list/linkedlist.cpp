@@ -124,22 +124,47 @@ void traverse(Node *head)
     cout << "\n";
 }
 
+bool ispalindrome(Node *head)
+{
+    Node *current = head;
+    vector<int> v;
+    vector<int> com;
+    while (current != NULL)
+    {
+        v.push_back(current->data);
+        current = current->next;
+    }
+    for (int i = v.size() - 1; i >= 0; i--)
+    {
+        com.push_back(v[i]);
+    }
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (v[i] != com[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main()
 {
     Node *head = NULL;
     head = insert(head, 10);
-    insert(head, 20);
-    insert(head, 30);
-    insert(head, 40);
-    head = push(head, 5);
-    traverse(head);
+    insert(head, 15);
+    insert(head, 15);
+    insert(head, 56);
+    ispalindrome(head) ? cout << "Yes" : cout << "No";
+    // head = push(head, 5);
+    // traverse(head);
     // head = reverserec(head);
     // traverse(head);
     // test(head);
     // head = deleteNode(head, 30);
     // traverse(head);
-    head = reverse(head);
-    traverse(head);
+    // head = reverse(head);
+    // traverse(head);
 
     return 0;
 }
