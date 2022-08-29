@@ -4,23 +4,42 @@ using namespace std;
 int mem[100];
 int dp[100][100];
 
-// int ans(string s)
-// {
-//     bool isNegative = false;
-//     int i = 0;
-//     if (i < s.length() && (s[i] == '-' || s[i] == '+'))
-//     {
-//         isNegative = s[i] == '-';
-//         i++;
-//     }
-//     cout << isNegative;
-//     return 9;
-// }
-
-int main()
+void crossPattern(int n)
 {
-    string s = "23";
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= n; j++)
+		{
+			if(i == j || j == (n + 1 - i))
+			{
+				cout << "*";
+			}
+			else
+			{
+				cout << " ";
+			}
+		}
+		cout << endl;
+	}
+}
 
-    cout << a;
-    return 0;
+void pyramid(int n)
+{
+	for(int i = 1; i <= n; i++)
+	{
+		for(int j = 1; j <= n; j++)
+		{
+			
+		}
+		cout << endl;
+	}
+}
+
+int main(){
+	int n;
+	cin >> n;
+	crossPattern(n);
+	pyramid(n);
+	
+	return 0;
 }
