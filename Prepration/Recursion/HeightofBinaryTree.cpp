@@ -58,6 +58,7 @@ int height(Node *root)
     {
         return right + 1;
     }
+    return 0;
 }
 
 int main()

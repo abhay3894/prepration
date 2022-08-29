@@ -81,22 +81,50 @@ bool search(treeNode *root, int key)
     return false;
 }
 
+void LevelOrder(treeNode* root)
+{
+    if(root == NULL) return;
+    queue<treeNode*> q;
+    q.push(root);
+    while (q.size() > 0)
+    {
+        vector<int> v;
+            int n = q.size();
+            for(int i = 0; i < n; i++)
+            {
+                treeNode* temp = q.front();
+                q.pop();
+                if(temp->left != NULL)
+                {
+                    q.push(temp->left);
+                }
+                if(temp->right != NULL)
+                {
+                    q.push(temp->right);
+                }
+                cout << temp->data << " ";
+            }
+        cout << "\n";
+    }
+}
+
 int main()
 {
     treeNode *root = NULL;
-    root = insert(root, 10);
     root = insert(root, 20);
+    root = insert(root, 10);
     root = insert(root, 30);
     root = insert(root, 40);
     root = insert(root, 5);
     root = insert(root, 4);
-    inorder(root);
-    cout << "\n";
-    cout << height(root);
-    cout << "\n";
-    if (search(root, 500))
-        cout << "Found";
-    else
-        cout << "Not Found";
+    // inorder(root);
+    // cout << "\n";
+    // cout << height(root);
+    // cout << "\n";
+    // if (search(root, 500))
+    //     cout << "Found";
+    // else
+    //     cout << "Not Found";
+    LevelOrder(root);
     return 0;
 }
