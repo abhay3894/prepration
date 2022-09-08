@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #define ll long long
+#define l long
 using namespace std;
 
 bool redundant(string &str)
